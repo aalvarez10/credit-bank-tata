@@ -10,13 +10,16 @@ interface Props {
   disabled?: boolean;
   id?: string;
   isLoading?: boolean;
+  accessibilityText?: string
 }
 
-const Button = ({name, type, onPress, disabled, id, isLoading}: Props) => {
+const Button = ({name, type, onPress, disabled, id, isLoading,accessibilityText}: Props) => {
   const {style} = defineStyles(type);
   return (
     <TouchableOpacity
       id={id}
+      accessible={true}
+      accessibilityLabel={accessibilityText}
       style={style.styleButton}
       onPress={() => onPress()}
       disabled={disabled}>

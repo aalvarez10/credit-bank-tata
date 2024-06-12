@@ -1,62 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import CreditCardsRender from './render';
 import apiCalls from '../../api/apiCalls';
-import {CreditCardFormI} from '../../interfaces/CreditCardFormI';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {NavigationParams} from '../../navigation/appNavigation';
-import {NavigationProp} from '@react-navigation/native';
-import {ToastI} from '../../components/Toast';
-import {typeToast} from '../../components/Toast/style';
+import { CreditCardFormI } from '../../interfaces/CreditCardFormI';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NavigationParams } from '../../navigation/appNavigation';
+import { NavigationProp } from '@react-navigation/native';
+import { ToastI } from '../../components/Toast';
+import { typeToast } from '../../components/Toast/style';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useFetchCreditsCards } from '../../hooks/useFetchCreditsCards';
 
-interface Props extends StackScreenProps<NavigationParams,'CreditCards'>{}
+interface Props extends StackScreenProps<NavigationParams, 'CreditCards'> { }
 const initDetailToast = {
   isShow: false,
   mensage: '',
   type: '',
 };
-const CreditsCards = ({navigation}: Props) => {
-  const [listCreditCards, setListCreditCards] = useState<CreditCardFormI[]>([]);
-  const [listCreditCardsAux, setListCreditCardsAux] = useState<
-    CreditCardFormI[]
-  >([]);
+const CreditsCards = ({ navigation }: Props) => {
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { listCreditCards, listCreditCardsAux, detailToast, isLoading, setDetailToast, setListCreditCards, getListCreditCards } = useFetchCreditsCards()
 
   const [valueSearch, setValueSearch] = useState<string>('');
-  const [detailToast, setDetailToast] = useState<ToastI>(initDetailToast);
-
-  const getListCreditCards = async () => {
-    try {
-      setIsLoading(true);
-      const {data, status} = await apiCalls.get('');
-      if (status === 200) {
-        setListCreditCards(data);
-        setListCreditCardsAux(data);
-        setIsLoading(false);
-      } else {
-        const detail: ToastI = {
-          isShow: true,
-          mensage: 'Error al consultar productos',
-          type: typeToast.error,
-        };
-        setDetailToast(detail);
-        setIsLoading(false);
-      }
-    } catch (error) {
-      const detail: ToastI = {
-        isShow: true,
-        mensage: 'Error al consultar productos',
-        type: typeToast.error,
-      };
-      setDetailToast(detail);
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getListCreditCards();
-  }, []);
 
   const handleChange = (e: string) => {
     setValueSearch(e);
@@ -79,6 +43,7 @@ const CreditsCards = ({navigation}: Props) => {
       getListCreditCards();
     }
   };
+  
   return (
     <CreditCardsRender
       navigation={navigation}

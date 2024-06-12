@@ -28,7 +28,11 @@ const CreditCardsRender = ({
 }: Props) => {
   const styles = defineStyles();
   return (
-    <View style={styles.container}>
+    <View 
+    accessible={true}
+    accessibilityLabel='Pantalla Listado de tarjetas'
+    style={styles.container}
+    >
       <Toast
         isShow={detailToast.isShow}
         type={detailToast.type}
@@ -63,6 +67,7 @@ const CreditCardsRender = ({
 
           <Button
             name="Agregar"
+            accessibilityText='Boton Agregar Nueva Tarjeta'
             type={typeButton.primary}
             onPress={() => navigation.push('CreditCardForm', {cardInfo: false})}
           />

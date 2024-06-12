@@ -40,6 +40,7 @@ const CreditCardFormRender = ({
         </Text>
         <Input
           labelUp="ID"
+          accesibilityId="formLabelId"
           name={'id'}
           onChangeText={formik.handleChange('id')}
           value={formik.values.id}
@@ -50,6 +51,7 @@ const CreditCardFormRender = ({
         />
         <Input
           labelUp="Nombre"
+          accesibilityId="formLabelName"
           onChangeText={formik.handleChange('name')}
           value={formik.values.name}
           name={'name'}
@@ -59,6 +61,7 @@ const CreditCardFormRender = ({
         />
         <Input
           labelUp="Descripción"
+          accesibilityId="formLabelDescription"
           onChangeText={formik.handleChange('description')}
           value={formik.values.description}
           name={'description'}
@@ -68,6 +71,7 @@ const CreditCardFormRender = ({
         />
         <Input
           labelUp="Logo"
+          accesibilityId="formLabelLogo"
           onChangeText={formik.handleChange('logo')}
           value={formik.values.logo}
           name={'logo'}
@@ -77,8 +81,9 @@ const CreditCardFormRender = ({
         />
         <Input
           labelUp="Fecha Liberación"
+          accesibilityId="formLabelDateRelease"
           onChangeText={formik.handleChange('date_release')}
-          value={formik.values.date_release}
+          value={formik.values.date_release.toString()}
           name={'date_release'}
           onBlur={handleBlurDate}
           error={!!(formik.errors.date_release && formik.touched.date_release)}
@@ -87,8 +92,9 @@ const CreditCardFormRender = ({
         />
         <Input
           labelUp="Fecha Revisión"
+          accesibilityId="formLabelDateRevision"
           onChangeText={formik.handleChange('date_revision')}
-          value={formik.values.date_revision}
+          value={formik.values.date_revision.toString()}
           name={'date_revision'}
           onBlur={formik.handleBlur('date_revision')}
           error={
@@ -102,6 +108,7 @@ const CreditCardFormRender = ({
         <View style={{paddingTop: 22, marginBottom: 10}}>
           <Button
             name="Enviar"
+            accessibilityText='Boton Guardar Tarjeta Nueva'
             type={typeButton.primaryTwo}
             onPress={() => {
               formik.submitForm();
@@ -111,6 +118,7 @@ const CreditCardFormRender = ({
           />
           <Button
             name="Reiniciar"
+            accessibilityText='Boton Reiniciar Formulario'
             type={typeButton.secondary}
             onPress={() => formik.resetForm()}
             disabled={!isNewRegister || isLoading}

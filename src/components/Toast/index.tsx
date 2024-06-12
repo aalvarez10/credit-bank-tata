@@ -48,7 +48,7 @@ const Toast = ({isShow, type, mensage}: ToastI) => {
               opacity: fadeAnim,
             },
           ]}>
-          <Text style={extraStyles.fadingText}>{mensage}</Text>
+          <Text style={extraStyles.fadingText} accessible={true} accessibilityHint={mensage}>{mensage}</Text>
         </Animated.View>
       )}
     </>

@@ -9,7 +9,6 @@ import {CreditCardFormI} from '../../interfaces/CreditCardFormI';
 import {transformDate} from '../../util/trasnsformDate';
 import Toast, {ToastI} from '../../components/Toast';
 import { StackScreenProps } from '@react-navigation/stack';
-import { NavigationAction } from '@react-navigation/native';
 import { NavigationParams } from '../../navigation/appNavigation';
 
 interface Props extends StackScreenProps<NavigationParams,'CreditCardDetail'> {
