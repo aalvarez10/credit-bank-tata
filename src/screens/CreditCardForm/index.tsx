@@ -19,7 +19,7 @@ const CreditCardForm = ({ navigation, route }: Props) => {
   const { cardInfo } = route.params;
   const [existId, setExistId] = useState(false);
   
-  const { formik, isNewRegister, isLoading, detailToast } = useFormCreditCard(cardInfo, existId,navigation);
+  const { formik, isNewRegister, isLoading, detailToast } = useFormCreditCard({cardInfo, existId,navigation});
 
   const handleBlurId = async () => {
     if (formik.values.id.length >= 3 && formik.values.id.length >= 3) {

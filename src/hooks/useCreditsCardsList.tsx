@@ -11,14 +11,14 @@ const initDetailToast = {
   };
 
 
-export const useFetchCreditsCards = () => {
+export const useCreditsCardsList = () => {
 
     const [listCreditCards, setListCreditCards] = useState<CreditCardFormI[]>([]);
     const [listCreditCardsAux, setListCreditCardsAux] = useState<
         CreditCardFormI[]
     >([]);
 
-    const [detailToast, setDetailToast] = useState<ToastI>(initDetailToast);
+    const [toast, setToast] = useState<ToastI>(initDetailToast);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -40,7 +40,7 @@ export const useFetchCreditsCards = () => {
                     mensage: 'Error al consultar productos',
                     type: typeToast.error,
                 };
-                setDetailToast(detail);
+                setToast(detail);
                 setIsLoading(false);
             }
         } catch (error) {
@@ -49,7 +49,7 @@ export const useFetchCreditsCards = () => {
                 mensage: 'Error al consultar productos',
                 type: typeToast.error,
             };
-            setDetailToast(detail);
+            setToast(detail);
             setIsLoading(false);
         }
     };
@@ -58,9 +58,8 @@ export const useFetchCreditsCards = () => {
         listCreditCards,
         listCreditCardsAux,
         isLoading,
-        detailToast,
+        toast,
 
-        setDetailToast,
         setListCreditCards,
         getListCreditCards
     }

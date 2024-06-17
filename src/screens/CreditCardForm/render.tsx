@@ -1,12 +1,12 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import {defineStyles} from './style';
+import { ScrollView, Text, View } from 'react-native';
+import { defineStyles } from './style';
 import Input from '../../components/Inputs';
 import Button from '../../components/Button';
-import {typeButton} from '../../components/Button/style';
-import {FormikProps} from 'formik';
-import {CreditCardFormI} from '../../interfaces/CreditCardFormI';
-import Toast, {ToastI} from '../../components/Toast';
+import { typeButton } from '../../components/Button/style';
+import { FormikProps } from 'formik';
+import { CreditCardFormI } from '../../interfaces/CreditCardFormI';
+import Toast, { ToastI } from '../../components/Toast';
 
 interface Props {
   formik: FormikProps<CreditCardFormI>;
@@ -28,7 +28,7 @@ const CreditCardFormRender = ({
 }: Props) => {
   const styles = defineStyles();
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} testID='creditCardForm'>
       <Toast
         isShow={detailToast.isShow}
         type={detailToast.type}
@@ -39,6 +39,7 @@ const CreditCardFormRender = ({
           Formulario de {isNewRegister ? 'Registro' : 'Edición'}
         </Text>
         <Input
+          testID="textfield-id"
           labelUp="ID"
           accesibilityId="formLabelId"
           name={'id'}
@@ -80,6 +81,7 @@ const CreditCardFormRender = ({
           helperText={formik.errors.logo}
         />
         <Input
+        testID="date_release"
           labelUp="Fecha Liberación"
           accesibilityId="formLabelDateRelease"
           onChangeText={formik.handleChange('date_release')}
@@ -91,6 +93,7 @@ const CreditCardFormRender = ({
           placeholder="aaaa-mm-dd"
         />
         <Input
+          testID="date_revision"
           labelUp="Fecha Revisión"
           accesibilityId="formLabelDateRevision"
           onChangeText={formik.handleChange('date_revision')}
@@ -105,7 +108,7 @@ const CreditCardFormRender = ({
           editable={false}
         />
 
-        <View style={{paddingTop: 22, marginBottom: 10}}>
+        <View style={{ paddingTop: 22, marginBottom: 10 }}>
           <Button
             name="Enviar"
             accessibilityText='Boton Guardar Tarjeta Nueva'

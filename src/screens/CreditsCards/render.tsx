@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
-import {defineStyles} from './styles';
+import React, { useState } from 'react';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { defineStyles } from './styles';
 import Input from '../../components/Inputs';
 import SelectableCard from '../../components/SelectableCard';
 import Button from '../../components/Button';
-import {typeButton} from '../../components/Button/style';
-import {CreditCardFormI} from '../../interfaces/CreditCardFormI';
-import Toast, {ToastI} from '../../components/Toast';
+import { typeButton } from '../../components/Button/style';
+import { CreditCardFormI } from '../../interfaces/CreditCardFormI';
+import Toast, { ToastI } from '../../components/Toast';
 import Skeleton from '../../components/Skeleton';
 
 interface Props {
@@ -28,10 +28,10 @@ const CreditCardsRender = ({
 }: Props) => {
   const styles = defineStyles();
   return (
-    <View 
-    accessible={true}
-    accessibilityLabel='Pantalla Listado de tarjetas'
-    style={styles.container}
+    <View
+      accessible={true}
+      accessibilityLabel='Pantalla Listado de tarjetas'
+      style={styles.container}
     >
       <Toast
         isShow={detailToast.isShow}
@@ -39,6 +39,7 @@ const CreditCardsRender = ({
         mensage={detailToast.mensage}
       />
       <Input
+        accesibilityMenssage='Buscador de tarjeta'
         placeholder="Buscar..."
         onChangeText={(e: string) => handleChange(e)}
         value={valueSearch}
@@ -53,11 +54,13 @@ const CreditCardsRender = ({
       ) : (
         <>
           <FlatList
+            accessible={true}
+            accessibilityLabel='Lista de tarjetas'
             contentContainerStyle={styles.containerList}
             data={listCreditCards}
             keyExtractor={(item: CreditCardFormI) => item.id}
             bounces={false}
-            renderItem={({item}) => {
+            renderItem={({ item }) => {
               return <SelectableCard card={item} navigation={navigation} />;
             }}
             ListEmptyComponent={
@@ -69,7 +72,7 @@ const CreditCardsRender = ({
             name="Agregar"
             accessibilityText='Boton Agregar Nueva Tarjeta'
             type={typeButton.primary}
-            onPress={() => navigation.push('CreditCardForm', {cardInfo: false})}
+            onPress={() => navigation.push('CreditCardForm', { cardInfo: false })}
           />
         </>
       )}

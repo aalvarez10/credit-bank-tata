@@ -8,7 +8,7 @@ import { NavigationProp } from '@react-navigation/native';
 import { ToastI } from '../../components/Toast';
 import { typeToast } from '../../components/Toast/style';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useFetchCreditsCards } from '../../hooks/useFetchCreditsCards';
+import { useCreditsCardsList } from '../../hooks/useCreditsCardsList';
 
 interface Props extends StackScreenProps<NavigationParams, 'CreditCards'> { }
 const initDetailToast = {
@@ -18,9 +18,16 @@ const initDetailToast = {
 };
 const CreditsCards = ({ navigation }: Props) => {
 
-  const { listCreditCards, listCreditCardsAux, detailToast, isLoading, setDetailToast, setListCreditCards, getListCreditCards } = useFetchCreditsCards()
+  const { listCreditCards, listCreditCardsAux, toast, isLoading,  setListCreditCards, getListCreditCards } = useCreditsCardsList()
+
+  const [detailToast, setDetailToast] = useState<ToastI>(initDetailToast);
 
   const [valueSearch, setValueSearch] = useState<string>('');
+
+  useEffect(() => {
+    setDetailToast(toast)
+  }, [toast])
+  
 
   const handleChange = (e: string) => {
     setValueSearch(e);

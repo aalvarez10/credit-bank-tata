@@ -24,7 +24,13 @@ const initialForm: CreditCardFormI = {
   };
   
 
-export const useFormCreditCard = (cardInfo: CreditCardFormI | undefined, existId: boolean, navigation: any) => {
+  interface Props {
+    cardInfo: CreditCardFormI | undefined,
+    existId: boolean, 
+    navigation: any
+  }
+
+export const useFormCreditCard = ({cardInfo,existId,navigation}:Props) => {
     const [isNewRegister, setIsNewRegister] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState<boolean>(false);
  
@@ -48,6 +54,7 @@ export const useFormCreditCard = (cardInfo: CreditCardFormI | undefined, existId
           setIsNewRegister(false);
         }
       }, [cardInfo]);
+
     const formik = useFormik<CreditCardFormI>({
         initialValues: initialForm,
         validationSchema: Yup.object({

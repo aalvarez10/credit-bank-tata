@@ -1,16 +1,17 @@
-import React, {useEffect, useRef} from 'react';
-import {Animated, Modal, Text, TouchableOpacity, View} from 'react-native';
-import {defineStyles} from './style';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { defineStyles } from './style';
 import Button from '../Button';
-import {typeButton} from '../Button/style';
+import { typeButton } from '../Button/style';
 
 interface Props {
   name: string;
   cardId: string;
   handleClose: (value: boolean) => void;
   handleConfirmDelete: (id: string) => void;
+  testID?: string
 }
-const ModalInfo = ({name, cardId, handleClose, handleConfirmDelete}: Props) => {
+const ModalInfo = ({ name, cardId, handleClose, handleConfirmDelete, testID = 'modal-info' }: Props) => {
   const styles = defineStyles();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -27,7 +28,7 @@ const ModalInfo = ({name, cardId, handleClose, handleConfirmDelete}: Props) => {
 
   return (
     <Animated.View
-      testID={'modal-info'}
+      testID={testID}
       style={[
         styles.overlay,
         {
@@ -40,7 +41,7 @@ const ModalInfo = ({name, cardId, handleClose, handleConfirmDelete}: Props) => {
             onPress={() => {
               handleClose(false);
             }}>
-            <Text style={styles.icon}>x</Text>
+            <Text style={styles.icon} accessible={true} accessibilityLabel='Cerrar Cuadro'>x</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.divider} />
@@ -48,14 +49,17 @@ const ModalInfo = ({name, cardId, handleClose, handleConfirmDelete}: Props) => {
           ¿Estás seguro de eliminar el producto {name}?
         </Text>
         <View style={styles.divider} />
-        <View style={{paddingHorizontal: 20, marginTop: 10}}>
+        <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
           <Button
+          accessibilityText='Botón confirmar eliminar Tarjeta'
+            testID='confirm-button'
             id="confirm-button"
             name="Confirmar"
             type={typeButton.primary}
             onPress={() => handleConfirmDelete(cardId)}
           />
           <Button
+          accessibilityText='Botón cancelar eliminar Tarjeta'
             id="cancel-button"
             name="Cancelar"
             type={typeButton.secondaryTwo}

@@ -18,18 +18,15 @@ const AppNavigation = () => {
   return (
     <Stack.Navigator >
       <Stack.Screen name="CreditCards" component={CreditsCards} options={{
-        // @ts-ignore
-          headerTitle: (props) => <Layaout {...props}/>,
+          headerTitle: (props:any) => <Layaout {...props}/>,
           headerBackVisible: false
         }}/>
          <Stack.Screen name="CreditCardDetail" component={CreditCardDetail} options={{
-        // @ts-ignore
-          headerTitle: (props) => <Layaout {...props}/>,
+          headerTitle: (props:any) => <Layaout {...props}/>,
           headerBackVisible: false
         }}/>
         <Stack.Screen name="CreditCardForm" component={CreditCardForm} options={{
-        // @ts-ignore
-          headerTitle: (props) => <Layaout {...props}/>,
+          headerTitle: (props:any) => <Layaout {...props}/>,
           headerBackVisible: false
         }}/>
     </Stack.Navigator>

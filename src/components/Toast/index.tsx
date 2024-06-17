@@ -6,9 +6,10 @@ export interface ToastI {
   isShow: boolean;
   type: string;
   mensage: string;
+  testID?: string;
 }
 
-const Toast = ({isShow, type, mensage}: ToastI) => {
+const Toast = ({isShow, type, mensage,testID}: ToastI) => {
   const {styles, extraStyles} = defineStyles(type);
   useEffect(() => {
     fadeIn();
@@ -42,6 +43,7 @@ const Toast = ({isShow, type, mensage}: ToastI) => {
     <>
       {isShow && (
         <Animated.View
+        testID={testID}
           style={[
             styles,
             {

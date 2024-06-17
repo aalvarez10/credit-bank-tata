@@ -10,7 +10,9 @@ interface Props {
   error?: boolean | undefined;
   helperText?: string;
   editable?: boolean;
-  accesibilityId?: string
+  accesibilityId?: string;
+  testID?: string;
+  accesibilityMenssage?: string
 }
 const Input = ({
   placeholder,
@@ -22,13 +24,16 @@ const Input = ({
   error,
   helperText,
   editable,
-  accesibilityId
+  accesibilityId,
+  testID,
+  accesibilityMenssage
 }: Props) => {
   const styles = defineStyles();
   return (
     <>
       {labelUp && <Text style={styles.labelUp} nativeID={accesibilityId}>{labelUp}</Text>}
       <TextInput
+        testID={testID}
         id={name}
         placeholder={placeholder}
         style={error ? [styles.input, styles.inputError] : styles.input}
@@ -36,8 +41,10 @@ const Input = ({
         value={value}
         onBlur={onBlur}
         editable={editable}
-        accessibilityLabel="input"
+        accessible={true}
+        accessibilityLabel={''}
         accessibilityLabelledBy={accesibilityId}
+        accessibilityHint={accesibilityMenssage}
       />
       {error && <Text style={styles.labelDown} accessible={true} accessibilityLabel={helperText}>{helperText}</Text>}
     </>
