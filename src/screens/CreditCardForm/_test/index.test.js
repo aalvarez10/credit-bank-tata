@@ -57,22 +57,6 @@ describe('CreditCardForm', () => {
       });
     
   });
-
- /*  it('handles blur on date input and sets date_revision correctly', async () => {
-    const { getByTestId } = renderComponent({route, navigation})
-    const user = userEvent.setup()
-
-    const dateInput = getByTestId('date_release');
-    //fireEvent.changeText(dateInput, '2023-01-01');
-    //await user.type(dateInput, "Testing[Tab]");
-    const dateInputDateRevision = getByTestId('date_release');
-    //fireEvent.changeText(dateInputDateRevision, '2024-01-01');
-
-    console.log(dateInput)
-    await waitFor(() => {
-    expect(dateInput).toEqual('2023-01-01')
-    })
-  });  */
 });
 
 
